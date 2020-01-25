@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { I18nextProvider } from 'react-i18next';
 import i18next from 'i18next';
 import { universalLanguageDetect } from '@unly/universal-language-detector';
 import frTranslations from "./translations/fr.json";
 import enTranslations from "./translations/en.json";
+import App from './components/app/App';
 
 const languageOfBrowser = universalLanguageDetect({
     supportedLanguages: ["en", "fr"], // Whitelist of supported languages, will be used to filter out languages that aren't supported
