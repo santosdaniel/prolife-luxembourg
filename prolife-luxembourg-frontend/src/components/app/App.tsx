@@ -24,12 +24,12 @@ class App extends React.Component<WithTranslation> {
 
     return (
       <div className="App">
-        <MenuAppBar 
-          i18n={this.props.i18n}
-          tReady={this.props.tReady}
-          t={this.props.t}
-           />
         <Router>
+          <MenuAppBar
+            i18n={this.props.i18n}
+            tReady={this.props.tReady}
+            t={this.props.t}
+          />
           <div>
             {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}

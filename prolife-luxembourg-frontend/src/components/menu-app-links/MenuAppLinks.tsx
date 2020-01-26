@@ -4,6 +4,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import { Redirect } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -13,12 +14,13 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export default function MenuAppLinks() {
+export default function MenuAppLinks(state: any) {
     const classes = useStyles();
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const menuOpen = Boolean(anchorEl);
 
+    const [redirectUrl, setRedirectUrl] = React.useState<null | string>(null);
 
     const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
@@ -30,8 +32,8 @@ export default function MenuAppLinks() {
     };
 
     const redirectToPage = (newUrl: string) => {
-        const tWindow = window as any
-        tWindow.location = newUrl
+        setAnchorEl(null);
+        setRedirectUrl(newUrl);
     }
 
     const redirectHome = () => {
@@ -46,8 +48,13 @@ export default function MenuAppLinks() {
         redirectToPage('http://wwww.sapo.pt')
     }
 
+
+    const redirectComponent = redirectUrl ? (
+    <Redirect to={redirectUrl} />) : null;
+
     return (
         <div>
+            {redirectComponent}
             <IconButton onClick={handleMenu} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                 <MenuIcon>
                 </MenuIcon>
