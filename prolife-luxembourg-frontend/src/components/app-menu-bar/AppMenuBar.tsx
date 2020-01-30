@@ -1,17 +1,14 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import SectionTitle from '../section-title/SectionTitle';
 import { WithTranslation } from 'react-i18next';
 import AppMenuLinks from '../app-menu-links/AppMenuLinks';
+import AppMenuLanguages from '../app-menu-languages/AppMenuLanguages';
 import './AppMenuBar.scss';
 
 
-
 export default class AppMenuBar extends React.Component<WithTranslation> {
-
 
 
     render() {
@@ -21,18 +18,17 @@ export default class AppMenuBar extends React.Component<WithTranslation> {
             <div className="Root">
                 <AppBar position="fixed">
                     <Toolbar>
-                        <AppMenuLinks />
+                        <AppMenuLinks
+                            i18n={this.props.i18n}
+                            tReady={this.props.tReady}
+                            t={this.props.t}
+                        />
                         <SectionTitle title={applicationTitle}></SectionTitle>
-                        <div>
-                            <IconButton
-                                aria-label="account of current user"
-                                aria-controls="menu-appbar"
-                                aria-haspopup="true"
-                                color="inherit"
-                            >
-                                <AccountCircle />
-                            </IconButton>
-                        </div>
+                        <AppMenuLanguages
+                            i18n={this.props.i18n}
+                            tReady={this.props.tReady}
+                            t={this.props.t}
+                        />
                     </Toolbar>
                 </AppBar>
             </div>

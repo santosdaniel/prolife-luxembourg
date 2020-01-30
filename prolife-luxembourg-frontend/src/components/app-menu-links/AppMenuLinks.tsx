@@ -10,10 +10,11 @@ import './AppMenuLinks.scss';
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         menuButton: {
-            marginRight: theme.spacing(2),
+            marginRight: theme.spacing(1),
         },
     }),
 );
+
 
 export default function AppMenuLinks(state: any) {
     const classes = useStyles();
