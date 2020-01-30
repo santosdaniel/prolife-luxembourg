@@ -44,13 +44,8 @@ export default function MenuAppLinks(state: any) {
         redirectToPage('/links')
     }
 
-    const redirectAbout = () => {
-        redirectToPage('http://wwww.sapo.pt')
-    }
-
-
     const redirectComponent = redirectUrl ? (
-    <Redirect to={redirectUrl} />) : null;
+        <Redirect to={redirectUrl} />) : null;
 
     return (
         <div>
@@ -76,7 +71,6 @@ export default function MenuAppLinks(state: any) {
             >
                 <MenuItem onClick={redirectHome}>Home</MenuItem>
                 <MenuItem onClick={redirectLinks}>Links</MenuItem>
-                <MenuItem onClick={redirectAbout}>About</MenuItem>
             </Menu>
         </div>
     );
