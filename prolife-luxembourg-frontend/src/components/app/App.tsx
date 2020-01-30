@@ -1,5 +1,5 @@
 import React from 'react';
-import MenuAppBar from '../menu-app-bar/MenuAppBar';
+import AppMenuBar from '../app-menu-bar/AppMenuBar';
 import LinkCardList from '../link-card-list/LinkCardList';
 import LinkCardListStateFactory from '../link-card-list/LinkCardListStateFactory';
 
@@ -25,7 +25,7 @@ class App extends React.Component<WithTranslation> {
     return (
       <div className="App">
         <Router>
-          <MenuAppBar
+          <AppMenuBar
             i18n={this.props.i18n}
             tReady={this.props.tReady}
             t={this.props.t}

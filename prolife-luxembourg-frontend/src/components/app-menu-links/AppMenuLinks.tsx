@@ -5,6 +5,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { Redirect } from 'react-router-dom';
+import './AppMenuLinks.scss';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -14,7 +15,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export default function MenuAppLinks(state: any) {
+export default function AppMenuLinks(state: any) {
     const classes = useStyles();
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);

@@ -4,13 +4,14 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import SectionTitle from '../section-title/SectionTitle';
-import MenuAppLinks from '../menu-app-links/MenuAppLinks';
 import { WithTranslation } from 'react-i18next';
-import './MenuAppBar.scss';
+import AppMenuLinks from '../app-menu-links/AppMenuLinks';
+import './AppMenuBar.scss';
 
 
-export default class MenuAppBar extends React.Component<WithTranslation> {
-    
+
+export default class AppMenuBar extends React.Component<WithTranslation> {
+
 
 
     render() {
@@ -20,7 +21,7 @@ export default class MenuAppBar extends React.Component<WithTranslation> {
             <div className="Root">
                 <AppBar position="fixed">
                     <Toolbar>
-                        <MenuAppLinks />
+                        <AppMenuLinks />
                         <SectionTitle title={applicationTitle}></SectionTitle>
                         <div>
                             <IconButton
