@@ -1,79 +1,91 @@
 import React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { Redirect } from 'react-router-dom';
+import { WithTranslation } from 'react-i18next';
+import { AppMenuLinksState } from './AppMenuLinksState';
 import './AppMenuLinks.scss';
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        menuButton: {
-            marginRight: theme.spacing(1),
-        },
-    }),
-);
 
+export default class AppMenuLinks extends React.Component<WithTranslation, AppMenuLinksState> {
 
-export default function AppMenuLinks(state: any) {
-    const classes = useStyles();
+    constructor(props: WithTranslation) {
+        super(props);
+        this.state = {
+            menuOpen: false,
+            anchorElement: null,
+            redirectUrl: null
+        }
+    }
 
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const menuOpen = Boolean(anchorEl);
-
-    const [redirectUrl, setRedirectUrl] = React.useState<null | string>(null);
-
-    const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget);
+    public handleClose = () => {
+        this.setState({
+            menuOpen: false,
+            anchorElement: null
+        })
     };
 
-    const handleClose = () => {
-        console.log("test")
-        setAnchorEl(null);
+    public handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+        const eventTarget = event.currentTarget
+        this.setState(
+            {
+                menuOpen: true,
+                anchorElement: eventTarget
+            }
+        );
     };
 
-    const redirectToPage = (newUrl: string) => {
-        setAnchorEl(null);
-        setRedirectUrl(newUrl);
+    private redirectToPage = (newUrl: string) => {
+        this.handleClose();
+        this.setState({
+            redirectUrl: newUrl
+        });
     }
 
-    const redirectHome = () => {
-        redirectToPage('/')
+    public redirectHome = () => {
+        this.redirectToPage('/')
     }
 
-    const redirectLinks = () => {
-        redirectToPage('/links')
+    public redirectLinks = () => {
+        this.redirectToPage('/links')
     }
 
-    const redirectComponent = redirectUrl ? (
-        <Redirect to={redirectUrl} />) : null;
+    public render() {
+        const redirectUrl = this.state.redirectUrl;
+        const anchorElement = this.state.anchorElement;
+        const menuOpen: boolean = (this.state.menuOpen === undefined) ? false : this.state.menuOpen;
 
-    return (
-        <div>
-            {redirectComponent}
-            <IconButton onClick={handleMenu} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                <MenuIcon>
-                </MenuIcon>
-            </IconButton>
-            <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                }}
-                open={menuOpen}
-                onClose={handleClose}
-            >
-                <MenuItem onClick={redirectHome}>Home</MenuItem>
-                <MenuItem onClick={redirectLinks}>Links</MenuItem>
-            </Menu>
-        </div>
-    );
+        const redirectComponent = redirectUrl ? (
+            <Redirect to={redirectUrl} />) : null;
+
+        return (
+            <div>
+                {redirectComponent}
+                <IconButton onClick={this.handleMenu} edge="start" className="menu-button" color="inherit" aria-label="menu">
+                    <MenuIcon>
+                    </MenuIcon>
+                </IconButton>
+                <Menu
+                    id="menu-appbar"
+                    anchorEl={anchorElement}
+                    anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                    open={menuOpen}
+                    onClose={this.handleClose}
+                >
+                    <MenuItem onClick={this.redirectHome}>Home</MenuItem>
+                    <MenuItem onClick={this.redirectLinks}>Links</MenuItem>
+                </Menu>
+            </div>
+        );
+    }
 }

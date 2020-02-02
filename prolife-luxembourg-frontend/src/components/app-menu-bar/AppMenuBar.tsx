@@ -15,7 +15,7 @@ export default class AppMenuBar extends React.Component<WithTranslation> {
         const applicationTitle = this.props.t('app.title');
 
         return (
-            <div className="Root">
+            <div className="root">
                 <AppBar position="fixed">
                     <Toolbar>
                         <AppMenuLinks
