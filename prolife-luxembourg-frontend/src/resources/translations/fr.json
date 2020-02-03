@@ -1,0 +1,8 @@
+{
+    "app": {
+        "title": "Prolife Luxembourg fr"
+    },
+    "welcome": {
+        "title": "Bienvenue sur {{title}}"
+    }
+}

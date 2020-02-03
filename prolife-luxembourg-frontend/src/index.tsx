@@ -5,8 +5,8 @@ import * as serviceWorker from './serviceWorker';
 import { I18nextProvider } from 'react-i18next';
 import i18next from 'i18next';
 import { universalLanguageDetect } from '@unly/universal-language-detector';
-import frTranslations from "./translations/fr.json";
-import enTranslations from "./translations/en.json";
+import frTranslations from "./resources/translations/fr.json";
+import enTranslations from "./resources/translations/en.json";
 import App from './components/app/App';
 
 const languageOfBrowser = universalLanguageDetect({
