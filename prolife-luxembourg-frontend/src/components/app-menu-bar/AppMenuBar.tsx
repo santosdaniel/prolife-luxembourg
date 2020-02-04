@@ -10,7 +10,6 @@ import './AppMenuBar.scss';
 
 export default class AppMenuBar extends React.Component<WithTranslation> {
 
-
     render() {
         const applicationTitle = this.props.t('app.title');
 

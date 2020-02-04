@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import Grid from '@material-ui/core/Grid';
 import LinkCard from '../link-card/LinkCard';
 import LinkCardListStateViewModel from './LinkCardListStateViewModel';
-
+import './LinkCardList.scss';
 
 class CoursesList extends Component<LinkCardListStateViewModel, any> {
     
     render() {
         return (
-            <div>
+            <div className="link-card-list">
                 { this.props.links ? (
                     <div>
                         <Grid container spacing={10} style={{padding: 24}}>
