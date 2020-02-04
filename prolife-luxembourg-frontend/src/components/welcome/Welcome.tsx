@@ -1,6 +1,6 @@
 import React from 'react';
 
-import logo from './../../logo.svg';
+import logo from './../../prolife_luxembourg_logo.png';
 import './Welcome.scss';
 import { Trans, WithTranslation } from 'react-i18next';
 
@@ -13,7 +13,7 @@ export class Welcome extends React.Component<WithTranslation> {
         const welcomeString = t('welcome.title', { title: applicationTitle });
 
         return (
-            <div>
+            <div className="welcome">
                 <img src={logo} className="welcome-app-logo" alt="logo" />
                 <h1 className="welcome-app-title">
                     {welcomeString}
