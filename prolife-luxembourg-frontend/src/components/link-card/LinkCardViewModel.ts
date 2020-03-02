@@ -4,4 +4,5 @@ export default class LinkCardViewModel {
     description: string | undefined;
     linkUrl: string | undefined;
     linkDescription: string | undefined;
+    icon: any | undefined;
 }

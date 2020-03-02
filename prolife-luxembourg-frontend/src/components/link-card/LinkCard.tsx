@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography'
 import CoursePropertiesViewModel from './LinkCardPropertiesViewModel'
 
 const LinkCard = (props: CoursePropertiesViewModel) => {
-    if(!props || !props.data) {
+    if (!props || !props.data) {
         return (
             <div></div>
         );
@@ -20,10 +20,13 @@ const LinkCard = (props: CoursePropertiesViewModel) => {
         <div>
             {props.data ? (
                 <Card >
-                    <CardMedia style={{ height: 0, paddingTop: '56.25%' }}
-                        image={data.imageUrl}
-                        title={data.title}
-                    />
+                    {data.icon ? data.icon :
+                        <CardMedia style={{ height: 0, paddingTop: '56.25%' }}
+                            image={data.imageUrl}
+                            title={data.title}
+                        />
+                    }
+
                     <CardContent>
                         <Typography gutterBottom variant="h6" component="h2">
                             {data.title}
@@ -34,8 +37,8 @@ const LinkCard = (props: CoursePropertiesViewModel) => {
                     </CardContent>
                     <CardActions>
                         <Button size="small" color="primary" href={data.linkUrl}>
-                            {data.linkDescription}
-                    </Button>
+                            <p>{data.linkDescription}</p>
+                        </Button>
                     </CardActions>
                 </Card>
             ) : null}

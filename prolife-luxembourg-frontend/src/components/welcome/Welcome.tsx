@@ -2,7 +2,7 @@ import React from 'react';
 
 import logo from './../../prolife_luxembourg_logo.png';
 import './Welcome.scss';
-import { Trans, WithTranslation } from 'react-i18next';
+import { WithTranslation } from 'react-i18next';
 
 
 export class Welcome extends React.Component<WithTranslation> {
@@ -18,7 +18,6 @@ export class Welcome extends React.Component<WithTranslation> {
                 <h1 className="welcome-app-title">
                     {welcomeString}
                 </h1>
-                <Trans i18nKey='welcome.intro'></Trans>
             </div>
         )
     }

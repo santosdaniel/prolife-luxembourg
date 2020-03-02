@@ -3,7 +3,6 @@ import AppMenuBar from '../app-menu-bar/AppMenuBar';
 import LinkCardList from '../link-card-list/LinkCardList';
 import LinkCardListStateFactory from '../link-card-list/LinkCardListStateFactory';
 
-import logo from './../../logo.svg';
 import './App.scss';
 import { withTranslation, Trans, WithTranslation } from 'react-i18next';
 
@@ -13,12 +12,23 @@ import {
   Route
 } from "react-router-dom";
 import { Welcome } from '../welcome/Welcome';
+import i18next from 'i18next';
+import { SupportedLanguagesFactory } from '../../models/supported-languages/SupportedLanguagesFactory';
+import LinkCardListStateViewModel from '../link-card-list/LinkCardListStateViewModel';
 
 class App extends React.Component<WithTranslation> {
 
-  render() {
+  private computeState = (): LinkCardListStateViewModel => {
     const linksFactory = new LinkCardListStateFactory();
-    const newState = linksFactory.createData();
+    const currentLanguageString = i18next.language;
+    const supportedLanguagesFactory = new SupportedLanguagesFactory();
+    const currentLanguageEnum = supportedLanguagesFactory.getLanguagesEnum(currentLanguageString);
+    const newState = linksFactory.createData(currentLanguageEnum);
+    return newState
+  }
+
+  render() {
+    const newState = this.computeState();
 
     const linksPath = "/links";
 
@@ -35,15 +45,16 @@ class App extends React.Component<WithTranslation> {
             renders the first one that matches the current URL. */}
             <Switch>
               <Route path={linksPath}>
-                <LinkCardList links={newState.links} />
-              </Route>
-              <Route path="/">
-
                 <Welcome
                   i18n={this.props.i18n}
                   tReady={this.props.tReady}
                   t={this.props.t}
                 />
+
+              </Route>
+
+              <Route path="/">
+                <LinkCardList links={newState.links} />
               </Route>
             </Switch>
           </div>
